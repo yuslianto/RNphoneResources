@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import Contacts from 'react-native-contacts';
 import Icon from 'react-native-vector-icons/Ionicons';
+import ButtonSuper from "./ButtonSuper";
 
 class ContactComponents extends Component {
 
@@ -168,6 +169,27 @@ class ContactComponents extends Component {
                         Open Form Contacts
                     </Text>
                 </TouchableOpacity>
+
+                <ButtonSuper
+                    onPress={this.getContacts}
+                    style={[styles.buttonStyle,{backgroundColor: 'red'}]}
+                >
+                    Load Contacts
+                </ButtonSuper>
+
+                <ButtonSuper
+                    onPress={this.addContacts}
+                    style={[styles.buttonStyle,]}
+                >
+                    Add Contacts
+                </ButtonSuper>
+
+                <ButtonSuper
+                    onPress={this.openContactsForm}
+                    style={[styles.buttonStyle,{backgroundColor: 'green', marginBottom:5}]}
+                >
+                    Open Form Contacts
+                </ButtonSuper>
             </View>
         );
     }
@@ -213,12 +235,15 @@ const styles = StyleSheet.create({
         backgroundColor:"#3b5998",
         flexDirection: 'row',
         justifyContent: 'center',
+        padding: 5
+        
     },
     textButtonStyle: { 
         fontFamily: 'Arial', 
         fontSize: 15, 
         color: 'white',
         fontWeight: 'bold',
-        paddingHorizontal: 10
+        textAlign: 'center',
+        paddingHorizontal: 5
     },
 });
