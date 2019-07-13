@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
-import ContactComponents from './contact';
+import ContactComponents from './src/contact';
 
 class App extends Component {
   render() {
