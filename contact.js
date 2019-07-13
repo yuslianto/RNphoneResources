@@ -120,7 +120,9 @@ class ContactComponents extends Component {
                 <ScrollView>
                     {
                         this.state.myContact.map((item, i)=>(
-                            <Text key={i}>{item.givenName} {item.familyName}</Text>
+                            <View style={styles.navTectContactStyle} key={i}>
+                                <Text style={styles.tectContactStyle} key={i}>{item.givenName} {item.familyName}</Text>
+                            </View>
                         ))
                     }
                 </ScrollView>
@@ -179,11 +181,25 @@ const styles = StyleSheet.create({
         //alignItems: 'center'
         alignContent: 'center'
     },
+    navTectContactStyle:{
+        flex: 1,
+        height: 30,
+        backgroundColor: 'yellow',
+        alignItems: 'center',
+        justifyContent: 'center',
+        marginBottom: 7
+    },
+    tectContactStyle:{
+        color: 'black',
+        fontSize: 20,
+        fontWeight: 'bold',
+        fontFamily: 'arial'
+    },
     navTitleStyle:{
         alignItems: 'center',
         height: 50,
         backgroundColor: 'grey',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     textTitleStyle: {
         fontSize: 30,
