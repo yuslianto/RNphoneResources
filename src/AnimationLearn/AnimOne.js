@@ -3,6 +3,7 @@ import {
     View,
     Text,
     Animated,
+    Easing,
     StyleSheet
 } from "react-native";
 
@@ -11,19 +12,30 @@ class AnimOne extends Component {
     constructor() {
         super();
         this.redSquare = new Animated.ValueXY(0, 0)
+        this.blueSquare = new Animated.ValueXY(0, 0)
     }
 
     componentDidMount() {
-        Animated.spring(this.redSquare,{
+        Animated.timing(this.redSquare,{
             toValue: {
                 x: 100,
                 y: 300
-            }
+            },
+            duration: 2000,
+            delay: 1000,
+            easing: Easing.elastic(2)
+        }).start();
+        Animated.spring(this.blueSquare,{
+            toValue: {
+                x: 300,
+                y: 500
+            },
         }).start();
     }
 
     render() {
         return (
+            <View style={styles.container}>
             <Animated.View
                 style={this.redSquare.getLayout()}
                 /**
@@ -36,15 +48,31 @@ class AnimOne extends Component {
                 <View style={styles.squre}>
                 </View> 
             </Animated.View>
+
+            <Animated.View
+                style={this.blueSquare.getLayout()}
+            >
+                <View style={styles.blueSq}>
+                </View>
+            </Animated.View>
+            </View>
         );
     }
 }
 export default AnimOne;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1
+    },
     squre: {
         width: 100,
         height: 100,
         backgroundColor: 'red'
+    },
+    blueSq:{
+        height: 100,
+        width: 100,
+        backgroundColor: 'blue'
     }
 });
