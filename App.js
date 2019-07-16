@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, Image } from 'react-native';
 import ContactComponents from './src/contact';
+import AnimOne from './src/AnimationLearn/AnimOne';
+
 
 class App extends Component {
   render() {
     return (
-      <ContactComponents/>
+      //<ContactComponents/>
+      <AnimOne/>
     );
   }
 }

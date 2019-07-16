@@ -11,9 +11,10 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const ButtonSuper = (props) => {
+    
     return(
         <TouchableOpacity
-            //onPress={this.props.onPress}
+            onPress={()=>this.onPress}
             style={[styles.buttonStyle, props.style]}
         >
             <Icon name="md-contacts" 
