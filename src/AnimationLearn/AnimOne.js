@@ -16,9 +16,19 @@ class AnimOne extends Component {
             redSquare: new Animated.ValueXY(0, 0),
             blueSquare: new Animated.ValueXY(0, 0),
             greenSquare: new Animated.Value(0),
+            yellowSquare: new Animated.Value(1),
         }
         //this.redSquare = new Animated.ValueXY(0, 0)
         //this.blueSquare = new Animated.ValueXY(0, 0)
+    }
+
+    runYellowSquare = () => {
+        Animated.timing(this.state.yellowSquare,{
+            toValue: 0,
+            duration: 2000,
+            delay: 1000,
+            //easing: Easing.elastic(4)
+        }).start();
     }
 
     runGreenSquare = () => {
@@ -34,7 +44,7 @@ class AnimOne extends Component {
         Animated.timing(this.state.redSquare,{
             toValue: {
                 x: 100,
-                y: 400
+                y: 300
             },
             duration: 2000,
             delay: 1000,
@@ -45,8 +55,8 @@ class AnimOne extends Component {
     runBlueSquare = () => {
         Animated.spring(this.state.blueSquare,{
             toValue: {
-                x: 100,
-                y: 300
+                x: -100,
+                y: 400
             },
         }).start();
     }
@@ -80,13 +90,27 @@ class AnimOne extends Component {
                 >
                     <Animated.View
                         style={{
+                            opacity: this.state.yellowSquare,
+                            left: this.state.yellowSquare.interpolate({
+                                inputRange:[0,1],
+                                outputRange:[300,0]
+                            })
+                        }}
+                    >
+                        <View
+                            style={styles.yellowSq}
+                        >
+                        </View>
+                    </Animated.View>
+
+                    <Animated.View
+                        style={{
                             opacity: this.state.greenSquare
                         }}
                     >
                         <View
                             style={styles.greenSq}
                         >
-
                         </View>
                     </Animated.View>
 
@@ -128,6 +152,11 @@ class AnimOne extends Component {
                         onPress={this.runGreenSquare}
                         color='green'
                     />
+                    <Button
+                        title="run animation yellow square"
+                        onPress={this.runYellowSquare}
+                        color='yellow'
+                    />
                 </View>
             </View>
         );
@@ -162,5 +191,10 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100,
         backgroundColor: 'green'
+    },
+    yellowSq:{
+        width:100,
+        height:100,
+        backgroundColor: 'yellow'
     }
 });
