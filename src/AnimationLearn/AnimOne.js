@@ -4,16 +4,44 @@ import {
     Text,
     Animated,
     Easing,
-    StyleSheet
+    StyleSheet,
+    Button,
 } from "react-native";
 
 class AnimOne extends Component {
 
     constructor() {
         super();
-        this.redSquare = new Animated.ValueXY(0, 0)
-        this.blueSquare = new Animated.ValueXY(0, 0)
+        this.state = {
+            redSquare: new Animated.ValueXY(0, 0),
+            blueSquare: new Animated.ValueXY(0, 0),
+        }
+        //this.redSquare = new Animated.ValueXY(0, 0)
+        //this.blueSquare = new Animated.ValueXY(0, 0)
     }
+
+    runRedSquare = () => {
+        Animated.timing(this.state.redSquare,{
+            toValue: {
+                x: 100,
+                y: 300
+            },
+            duration: 2000,
+            delay: 1000,
+            easing: Easing.elastic(4)
+        }).start();
+    }
+
+    runBlueSquare = () => {
+        Animated.spring(this.state.blueSquare,{
+            toValue: {
+                x: 300,
+                y: 500
+            },
+        }).start();
+    }
+
+    /**
 
     componentDidMount() {
         Animated.timing(this.redSquare,{
@@ -23,7 +51,7 @@ class AnimOne extends Component {
             },
             duration: 2000,
             delay: 1000,
-            easing: Easing.elastic(2)
+            easing: Easing.elastic(4)
         }).start();
         Animated.spring(this.blueSquare,{
             toValue: {
@@ -32,12 +60,13 @@ class AnimOne extends Component {
             },
         }).start();
     }
+     */
 
     render() {
         return (
             <View style={styles.container}>
             <Animated.View
-                style={this.redSquare.getLayout()}
+                style={this.state.redSquare.getLayout()}
                 /**
                 style={{
                     left: this.redSquare.x,
@@ -50,11 +79,25 @@ class AnimOne extends Component {
             </Animated.View>
 
             <Animated.View
-                style={this.blueSquare.getLayout()}
+                style={this.state.blueSquare.getLayout()}
             >
                 <View style={styles.blueSq}>
                 </View>
             </Animated.View>
+            <View
+                sttyle={styles.navButtonStyle}
+            >
+                <Button
+                    title="run animation red square"
+                    onPress={this.runRedSquare}
+                    color='red'
+                />
+                <Button
+                    title="run animation red square"
+                    onPress={this.runBlueSquare}
+                    color='blue'
+                />
+            </View>
             </View>
         );
     }
@@ -74,5 +117,10 @@ const styles = StyleSheet.create({
         height: 100,
         width: 100,
         backgroundColor: 'blue'
-    }
+    },
+    navButtonStyle:{
+        margin: 10,
+        paddingVertical: 5,
+        flex: 1
+    },
 });
