@@ -15,16 +15,26 @@ class AnimOne extends Component {
         this.state = {
             redSquare: new Animated.ValueXY(0, 0),
             blueSquare: new Animated.ValueXY(0, 0),
+            greenSquare: new Animated.Value(0),
         }
         //this.redSquare = new Animated.ValueXY(0, 0)
         //this.blueSquare = new Animated.ValueXY(0, 0)
+    }
+
+    runGreenSquare = () => {
+        Animated.timing(this.state.greenSquare,{
+            toValue: 1,
+            duration: 2000,
+            delay: 1000,
+            //easing: Easing.elastic(4)
+        }).start();
     }
 
     runRedSquare = () => {
         Animated.timing(this.state.redSquare,{
             toValue: {
                 x: 100,
-                y: 300
+                y: 400
             },
             duration: 2000,
             delay: 1000,
@@ -35,8 +45,8 @@ class AnimOne extends Component {
     runBlueSquare = () => {
         Animated.spring(this.state.blueSquare,{
             toValue: {
-                x: 300,
-                y: 500
+                x: 100,
+                y: 300
             },
         }).start();
     }
@@ -65,39 +75,60 @@ class AnimOne extends Component {
     render() {
         return (
             <View style={styles.container}>
-            <Animated.View
-                style={this.state.redSquare.getLayout()}
-                /**
-                style={{
-                    left: this.redSquare.x,
-                    top: this.redSquare.y
-                }}
-                */
-            >
-                <View style={styles.squre}>
-                </View> 
-            </Animated.View>
+                <View
+                    style={styles.navSquare}
+                >
+                    <Animated.View
+                        style={{
+                            opacity: this.state.greenSquare
+                        }}
+                    >
+                        <View
+                            style={styles.greenSq}
+                        >
 
-            <Animated.View
-                style={this.state.blueSquare.getLayout()}
-            >
-                <View style={styles.blueSq}>
+                        </View>
+                    </Animated.View>
+
+                    <Animated.View
+                        style={this.state.redSquare.getLayout()}
+                        /**
+                        style={{
+                            left: this.redSquare.x,
+                            top: this.redSquare.y
+                        }}
+                        */
+                    >
+                        <View style={styles.squre}>
+                        </View> 
+                    </Animated.View>
+
+                    <Animated.View
+                        style={this.state.blueSquare.getLayout()}
+                    >
+                        <View style={styles.blueSq}>
+                        </View>
+                    </Animated.View>
                 </View>
-            </Animated.View>
-            <View
-                sttyle={styles.navButtonStyle}
-            >
-                <Button
-                    title="run animation red square"
-                    onPress={this.runRedSquare}
-                    color='red'
-                />
-                <Button
-                    title="run animation red square"
-                    onPress={this.runBlueSquare}
-                    color='blue'
-                />
-            </View>
+                <View
+                    sttyle={styles.navButtonStyle}
+                >
+                    <Button
+                        title="run animation red square"
+                        onPress={this.runRedSquare}
+                        color='red'
+                    />
+                    <Button
+                        title="run animation blue square"
+                        onPress={this.runBlueSquare}
+                        color='blue'
+                    />
+                    <Button
+                        title="run animation green square"
+                        onPress={this.runGreenSquare}
+                        color='green'
+                    />
+                </View>
             </View>
         );
     }
@@ -107,6 +138,10 @@ export default AnimOne;
 const styles = StyleSheet.create({
     container: {
         flex: 1
+    },
+    navSquare: {
+        flex: 1,
+        flexDirection: 'row'
     },
     squre: {
         width: 100,
@@ -123,4 +158,9 @@ const styles = StyleSheet.create({
         paddingVertical: 5,
         flex: 1
     },
+    greenSq:{
+        height: 100,
+        width: 100,
+        backgroundColor: 'green'
+    }
 });
