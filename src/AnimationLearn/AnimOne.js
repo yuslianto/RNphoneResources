@@ -6,6 +6,7 @@ import {
     Easing,
     StyleSheet,
     Button,
+    ScrollView,
 } from "react-native";
 
 class AnimOne extends Component {
@@ -17,6 +18,9 @@ class AnimOne extends Component {
             blueSquare: new Animated.ValueXY(0, 0),
             greenSquare: new Animated.Value(0),
             yellowSquare: new Animated.Value(1),
+            brownSquare: new Animated.Value(1),
+            blueVioletSquare: new Animated.ValueXY(0,0),
+            yellowGreenSquare: new Animated.ValueXY(0,0),
         }
         //this.redSquare = new Animated.ValueXY(0, 0)
         //this.blueSquare = new Animated.ValueXY(0, 0)
@@ -61,6 +65,22 @@ class AnimOne extends Component {
         }).start();
     }
 
+    runAnimation = () => {
+        Animated.sequence([
+            Animated.timing(this.state.brownSquare,{
+                toValue: 0
+            }),
+            Animated.parallel([
+                Animated.spring(this.state.blueVioletSquare,{
+                    toValue: {x:100,y:200}
+                }),
+                Animated.spring(this.state.yellowGreenSquare,{
+                    toValue: {x:150,y:300}
+                })
+            ]),
+        ]).start();
+    }
+
     /**
 
     componentDidMount() {
@@ -85,6 +105,29 @@ class AnimOne extends Component {
     render() {
         return (
             <View style={styles.container}>
+
+                <View style={styles.navSequence}>
+                    <Animated.View
+                        style={{
+                            opacity: this.state.brownSquare
+                        }}
+                    >
+                        <View style={styles.brownSq}>
+                        </View>
+                    </Animated.View>
+                    <Animated.View
+                        style={this.state.blueVioletSquare.getLayout()}
+                    >
+                        <View style={styles.bluevioletSq}>
+                        </View>
+                    </Animated.View>
+                    <Animated.View
+                        style={this.state.yellowGreenSquare.getLayout()}
+                    >
+                        <View style={styles.yellowgreenSq}>
+                        </View>
+                    </Animated.View> 
+                </View>
 
                 <View style={styles.navSquare}>
                     <Animated.View
@@ -192,6 +235,11 @@ class AnimOne extends Component {
                         onPress={this.runYellowSquare}
                         color='yellow'
                     />
+                    <Button
+                    title="run animation Sequence square"
+                        onPress={this.runAnimation}
+                        color=''
+                    />
                 </View>
 
             </View>
@@ -250,5 +298,29 @@ const styles = StyleSheet.create({
         fontFamily: 'arial',
         fontSize: 20,
         fontWeight: 'bold'
+    },
+    navSequence: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center'
+    },
+    brownSq:{
+        width: 50,
+        height: 50,
+        backgroundColor: 'brown',
+        //position: 'absolute'
+    },
+    bluevioletSq:{
+        width: 50,
+        height: 50,
+        backgroundColor: 'blueviolet',
+        //position: 'absolute'
+    },
+    yellowgreenSq:{
+        width: 50,
+        height: 50,
+        backgroundColor: 'yellowgreen',
+        //position: 'absolute'
     }
+
 });
