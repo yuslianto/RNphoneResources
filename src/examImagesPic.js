@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Button, Image } from 'react-native';
 import imagePicker from 'react-native-image-picker';
 
-class imagePickerComponent extends Component {
+class TakeImgPicker extends Component {
     state = { 
         avatar: '',
     }
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default imagePickerComponent;
+export default TakeImgPicker;

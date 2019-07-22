@@ -171,21 +171,21 @@ class ContactComponents extends Component {
                 </TouchableOpacity>
 
                 <ButtonSuper
-                    onPress={this.getContacts}
+                    onPress={()=>this.getContacts()}
                     style={[styles.buttonStyle,{backgroundColor: 'red'}]}
                 >
                     Load Contacts
                 </ButtonSuper>
 
                 <ButtonSuper
-                    onPress={this.addContacts}
+                    onPress={()=>this.addContacts()}
                     style={[styles.buttonStyle,]}
                 >
                     Add Contacts
                 </ButtonSuper>
 
                 <ButtonSuper
-                    onPress={this.openContactsForm}
+                    onPress={()=>this.openContactsForm()}
                     style={[styles.buttonStyle,{backgroundColor: 'green', marginBottom:5}]}
                 >
                     Open Form Contacts

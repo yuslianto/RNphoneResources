@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, Image } from 'react-native';
+import { StyleSheet} from 'react-native';
 import ContactComponents from './src/contact';
 import AnimOne from './src/AnimationLearn/AnimOne';
+import TakeImgPicker from './src/examImagesPic';
 
 
 class App extends Component {
   render() {
     return (
-      //<ContactComponents/>
-      <AnimOne/>
+      <ContactComponents/>
+      //<AnimOne/>
+      //<TakeImgPicker/>
     );
   }
 }

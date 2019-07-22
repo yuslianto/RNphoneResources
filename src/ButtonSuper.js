@@ -14,7 +14,7 @@ const ButtonSuper = (props) => {
     
     return(
         <TouchableOpacity
-            onPress={()=>this.onPress}
+            onPress={props.onPress}
             style={[styles.buttonStyle, props.style]}
         >
             <Icon name="md-contacts" 
